@@ -958,11 +958,14 @@ void inicio(int vetorSetaXY[2][2],int const cores[3], char nome1[255], char nome
     gotoxy(12,15);printf("Expanda o CMD para no minimo a resolucao 1360 x 768 e pressione qualquer tecla para comecar");
     getch();
     gotoxy(12,15);printf("                                                                                           ");
-    designerDoJogo();
+    //designerDoJogo();
     gotoxy(1,1);
-    fstream arquivo;
+    //fstream arquivo;
     char opc='s';
-    arquivo.open("jogadores.txt",ios::app);
+    strcpy(nome1,"Jogador1");
+    strcpy(nome2,"Jogador2");
+    //arquivo.open("jogadores.txt",ios::app);
+    /*
     cout<<"Digite o nome do primeiro jogador: ";
         gets(nome1);
         arquivo<<nome1<<"\n";
@@ -1001,7 +1004,7 @@ void inicio(int vetorSetaXY[2][2],int const cores[3], char nome1[255], char nome
         }
         strcpy(nome2,a);
         nome2[25] = '\0';
-    }
+    }*/
 
     jBorda1 = strlen(nome1) + 10;
     jBorda2 = strlen(nome2) + 10;
@@ -1260,7 +1263,7 @@ bool jogarPosicao(int x,int y, bool& vez, int const Cores[3], int M[8][3],bool l
         vez = true;
         M[x][y] = 2;
     }
-    else if((x == 7 && y == 0 && (xAnterior == 6 || xAnterior == 4 && yAnterior == 0)
+    else if((x == 7 && y == 0 && ((xAnterior == 6 || xAnterior == 4) && yAnterior == 0)
         && vez == true && M[x][y] == 0)
         || (liberado == true && x == 7 && y == 0 && vez == true && M[x][y] == 0)){
         textbackground(Cores[0]);
@@ -1269,7 +1272,7 @@ bool jogarPosicao(int x,int y, bool& vez, int const Cores[3], int M[8][3],bool l
         vez = false;
         M[x][y] = 1;
     }
-    else if ((x == 7 && y == 0 && (xAnterior == 6 || xAnterior == 4 && yAnterior == 0)
+    else if ((x == 7 && y == 0 && ((xAnterior == 6 || xAnterior == 4) && yAnterior == 0)
         && vez == false && M[x][y] == 0)
         || (liberado == true && x == 7 && y == 0 && vez == false && M[x][y] == 0)){
         textbackground(Cores[1]);
@@ -2012,13 +2015,13 @@ bool moinhoHorizontalVertical(int x, int y, int horizontal[1][8],int vertical[8]
     else if (x == 4 && (y == 0 || y == 1 || y == 2) && horizontal[0][4] != 0){
         return false;
     }
-    else if ((x == 5 || x == 6 || x == 7) && y == 0 && horizontal[0][5] != 0){
+    else if ((x == 5 || x == 6 || x == 7) && y == 0 && horizontal[0][7] != 0){
         return false;
     }
     else if ((x == 5 || x == 6 || x == 7) && y == 1 && horizontal[0][6] != 0){
         return false;
     }
-    else if ((x == 5 || x == 6 || x == 7) && y == 2 && horizontal[0][7] != 0){
+    else if ((x == 5 || x == 6 || x == 7) && y == 2 && horizontal[0][5] != 0){
         return false;
     }
     else if ((x == 0 || x == 3 || x == 5) && y == 0 && vertical[0][0] != 0){
